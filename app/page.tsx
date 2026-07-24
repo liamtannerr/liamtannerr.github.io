@@ -15,7 +15,7 @@ export default function Home() {
       link: "https://auvic.ca/index.html",
       bullets: [
         "Engineered a ROS 2 dynamic configuration pipeline to extract PID values and Kalman filter matrices from YAML files, eliminating C++ recompilation downtime and enabling real-time parameter tuning during pool testing.",
-        "Represented the University of Victoria at RoboSub 2026 in Irvine, California, resolving critical thruster saturation limits in the C++ control loop and engineering a dead-reckoning state machine for autonomous navigation, leading the team to the semi-finals of an international engineering competition."
+        "Represented the University of Victoria at RoboSub 2026 in Irvine, California, resolving critical thruster saturation limits in the C++ control loop and engineering a state machine for autonomous navigation, advancing the team to the semi-finals of an international engineering competition."
       ]
     },
     {
