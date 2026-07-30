@@ -119,9 +119,8 @@ export default function Home() {
           <div className="flex items-center gap-4">
             
             <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
-             {/*<Link href="#about" className="hover:text-foreground transition-colors">About</Link> */} 
-              <Link href="#experience" className="hover:text-foreground transition-colors">Experience</Link>
               <Link href="#projects" className="hover:text-foreground transition-colors">Projects</Link>
+              <Link href="#experience" className="hover:text-foreground transition-colors">Experience</Link>
               <Link href="#contact" className="hover:text-foreground transition-colors">Contact</Link>
             </nav>
             
@@ -147,10 +146,13 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
-            Hi, I'm Liam.
+            Liam Tanner
+          </h1>
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
+            Software Engineer
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mb-8">
-            A Software Engineer, deeply passionate about robotics, machine learning and hardware level optimization.
+            I like to solve problems and learn new things every day.
           </p>
           <div className="flex gap-4">
             <Link 
@@ -161,6 +163,27 @@ export default function Home() {
             >
               Download Resume
             </Link>
+          </div>
+        </section>
+
+        {/* ABOUT SECTION */}
+        <section id="about" className="py-20 border-t">
+          <h2 className="text-3xl font-bold tracking-tight mb-8">About Me</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-foreground">Who I am</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Outside of tech, I am an athlete and an outdoorsman. I grew up playing competitive hockey, and love spending time in the mountains, racing enduro mountain bikes and skiing. This connection to the outdoors has directly shaped my professional life. During an 8-month co-op with Natural Resources Canada on the Induced Seismicity Project, I modeled real-world sites to ensure fracking and wastewater disposal wouldn't trigger harmful seismic activity in remote communities. Later, as a software developer at the Pacific Forestry Centre, I collaborated with like-minded engineers and scientists who care deeply about protecting BC’s forests. For me, software hasn't just about building applications; it's about engineering systems that interact with and protect the physical world.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-foreground">My story</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                I walked into the University of Victoria without any previous coding experience. My first computer science class was a brutal wake-up call, I was used to visualizing math and physics, and abstract code didn’t click the same. That initial struggle fuelled my early passion for software engineering as I have always enjoyed a challenge. My focus on machine learning, robotics and GPU programming began when I joined the Autonomous Underwater Vehicles Club (AUVIC) on the computer vision team at the beginning of 2025. Seeing firsthand how critical efficient GPU computing is for real-time robotics completely rewired my focus. That hands-on experience drove the tail end of my degree, pushing me to specialize in mathematical optimization and computer vision, ultimately finishing my final year of study with a 93% academic average. The learning curve never ends, and I'm still climbing.
+              </p>
+            </div>
           </div>
         </section>
 
