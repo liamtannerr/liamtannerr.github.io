@@ -161,7 +161,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className={buttonVariants({ size: "lg"  })}
             >
-              Download Resume
+              See Resume
             </Link>
           </div>
         </section>
