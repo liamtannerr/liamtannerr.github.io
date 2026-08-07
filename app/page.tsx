@@ -207,7 +207,7 @@ export default function Home() {
         <section className="flex flex-col items-center justify-center pt-24 pb-20 text-center">
           <div className="relative mb-6 h-50 w-50 overflow-hidden rounded-full border-2 border-border shadow-lg">
             <Image
-              src="/headshot.png"
+              src="face.jpg"
               alt="Liam Tanner headshot"
               fill
               className="object-cover scale-110" 
