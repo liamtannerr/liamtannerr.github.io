@@ -478,6 +478,28 @@ export default function Home() {
           </div>
         </section>
 
+        {/* HIDDEN PRELOADER FOR MODAL MEDIA */}
+        <div className="hidden">
+          {projects.flatMap((project) => project.images || []).map((mediaSrc, index) => {
+            const isVideo = mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm');
+            
+            if (isVideo) {
+              return <video key={index} src={mediaSrc} preload="auto" />;
+            }
+            
+            return (
+              <Image
+                key={index}
+                src={mediaSrc}
+                alt="preload"
+                width={1}
+                height={1}
+                priority // This tells Next.js to fetch it instantly
+              />
+            );
+          })}
+        </div>
+
       </main>
 
       {/* FOOTER */}
