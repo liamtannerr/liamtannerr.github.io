@@ -97,10 +97,17 @@ export default function Home() {
 
   const projects = [
     {
+      title: "Motion Estimation Video Compression Optimizations",
+      date: "July - Aug 2026",
+      description: "Engineered a high-performance 16x16 Sum-of-Absolute-Differences (SAD) kernel for block-matching motion estimation on an ARM architecture. Developed a custom, stateless SAD4 operation, and integrated it via a patched QEMU emulator and inline assembly. Achieved an 11.89x execution speedup using the custom opcode and a peak 34.93x speedup by implementing an ARM NEON SIMD vectorization pipeline.",
+      tech: ["C", "ARM Assembly", "Hardware Optimization"],
+      link: "https://github.com/BenJTowers/motion_estimation/blob/main/report/SAD_Optimizations_for_Motion_Estimation.pdf",
+    },
+    {
       title: "AI Incident Orchestrator",
       date: "May - Aug 2026",
       description: "Engineered a production-ready AI orchestration pipeline leveraging LLMs and RAG context to automate system incident triage in a distributed environment. Collaborated within a 17-member software engineering team utilizing automated test harnesses and GitHub Actions CI/CD to validate system stability.",
-      tech: ["Python", "PostgreSQL", "Groq API", "Llama", "CI/CD"],
+      tech: ["Python", "PostgreSQL", "Groq API", "CI/CD"],
       link: null,
     },
     {
@@ -293,7 +300,7 @@ export default function Home() {
                           rel="noopener noreferrer"
                           className={buttonVariants({ variant: "default" })}
                         >
-                          View Source Code
+                          View Source
                         </Link>
                       </div>
                     )}
