@@ -77,7 +77,7 @@ export default function Home() {
       date: "June — Dec 2025",
       link: null,
       bullets: [
-        "Implemented an ETL workflow to transform large PostgreSQL datasets into SQLite and flatfile releases, reducing processing time from hours to seconds.",
+        "Engineered automated data processing pipelines to transform large PostgreSQL datasets into optimized SQLite and flatfile releases, reducing processing time from hours to seconds.",
         "Engineered a release-versioning system using SQL and encryption to encode and track all future release metadata.",
         "Rebuilt a legacy public website from scratch in JavaScript, then wrote Bash scripts to automate the process for all future developers on my team."
       ]
@@ -102,6 +102,7 @@ export default function Home() {
       description: "Engineered a high-performance 16x16 Sum-of-Absolute-Differences (SAD) kernel for block-matching motion estimation on an ARM architecture. Developed a custom, stateless SAD4 operation, and integrated it via a patched QEMU emulator and inline assembly. Achieved an 11.89x execution speedup using the custom opcode and a peak 34.93x speedup by implementing an ARM NEON SIMD vectorization pipeline.",
       tech: ["C", "ARM Assembly", "Hardware Optimization"],
       link: "https://github.com/BenJTowers/motion_estimation/blob/main/report/SAD_Optimizations_for_Motion_Estimation.pdf",
+      images: ["Motion-Estimation-Pic.png"],
     },
     {
       title: "AI Incident Orchestrator",
@@ -109,6 +110,8 @@ export default function Home() {
       description: "Engineered a production-ready AI orchestration pipeline leveraging LLMs and RAG context to automate system incident triage in a distributed environment. Collaborated within a 17-member software engineering team utilizing automated test harnesses and GitHub Actions CI/CD to validate system stability.",
       tech: ["Python", "PostgreSQL", "Groq API", "CI/CD"],
       link: null,
+      images: ["ACIRO-Pic.png"],
+
     },
     {
       title: "Convolutional Engine",
@@ -123,12 +126,13 @@ export default function Home() {
       description: "Engineered a state-of-the-art anomaly detection pipeline in PyTorch, by writing the Patch Description Network class, training the teacher network and removing bottlenecks from the student/autoencoder training algorithm to allow for 70,000 training iterations in under 2 hours. Achieved an AUROC score of 0.88 on a diverse industrial dataset with less than 1 millisecond performance.",
       tech: ["PyTorch", "CNN Architecture"],
       link: "https://github.com/liamtannerr/Anomaly-Detection-Paper/blob/main/EfficientAD_Implementation.pdf",
+      images: ["Anomaly1.png", "Anomaly2.png"],
     },
     {
       title: "Breast Cancer Diagnosis Model",
       date: "Feb 2026",
       description: "Engineered a regularized logistic regression model for breast cancer diagnosis, achieving a 98.59% accuracy on the WDBC dataset by implementing a regularized softmax cost function and gradient descent from scratch.",
-      tech: ["MATLAB", "Optimization"],
+      tech: ["MATLAB", "Machine Learning"],
       link: null,
     },
     {
@@ -137,6 +141,8 @@ export default function Home() {
       description: "Trained a Random Forest model to classify whether or not an event is likely to be an exoplanet using NASA's Kepler data for the NASA Space Apps Hackathon.",
       tech: ["Scikit-learn", "Python"],
       link: "https://github.com/liamtannerr/exoplanet-identifier/tree/deploy",
+      liveLink: "https://exoplanet-identifier-front.vercel.app/",
+      images: ["ExoVis1-Pic.png", "ExoVis2-Pic.png"],
     },
     {
       title: "Ray Tracer",
@@ -144,6 +150,7 @@ export default function Home() {
       description: "Developed a ray tracer capable of rendering 3D animations using core vector math and rendering logic without relying on graphics APIs by following a textbook.",
       tech: ["C++"],
       link: "https://github.com/liamtannerr/RayTracer",
+      images:["RayTracer.png"],
     },
     {
       title: "Embedded Traffic Light Simulation",
@@ -151,19 +158,23 @@ export default function Home() {
       description: "Engineered the hardware architecture for an STM32F4-based traffic simulation, integrating a custom circuit with 22 LEDs, a potentiometer, and 3 daisy-chained shift registers. Synchronized the 19-bit LED array via shared GPIO pins and ensured circuit safety by calculating and wiring precise series resistors to protect the power supply and components.",
       tech: ["RTOS", "Circuit Design", "Embedded C"],
       link: "https://github.com/liamtannerr/Traffic-Lights",
+      images:["TrafficLights-Pic.png"],
     },
     {
       title: "Virtual Triage System",
       date: "Sept — Nov 2024",
-      description: "Engineered an emergency department, virtual triaging web application that allows patients to wait for an available physician from home.",
+      description: "With emergency department wait times exceeding 8 hours in BC, we need a more efficient way to diagnose prospective emergency deparment patients in order to determine the severity of their afflictions. Our Virtual Triage System allows patients to submit their symptoms to a remote nurse who assigns patient priorities in order to create a virtual queue. Patients can then wait for an available physician from the comfort of their own homes. Furthermore, patients can monitor the current wait times of the emergency deparments in their area.",
       tech: ["ReactJS", "Python", "MongoDB", "FastAPI"],
       link: "https://github.com/liamtannerr/Virtual-Triage-System",
+      demoLink: "https://www.youtube.com/watch?v=FPSUo2NT2v0",
+      images: ["MrED-Pic.png"],
     },
     {
       title: "Autonomous IR Detecting Robot",
       date: "Jan — Apr 2022",
       description: "Engineered an IR light detection robot from scratch, capable of detecting an IR beacon, travelling towards it and depositing a payload.",
       tech: ["ROBOTC", "C"],
+      images: ["Robo.mp4"],
       link: null,
     }
   ];
@@ -181,9 +192,6 @@ export default function Home() {
               <Link href="#projects" className="hover:text-foreground transition-colors">Projects</Link>
               <Link href="#experience" className="hover:text-foreground transition-colors">Experience</Link>
               <Link href="#about" className="hover:text-foreground transition-colors">About Me</Link>
-              {/*<Link href="#contact" className="hover:text-foreground transition-colors">Contact</Link>*/}
-
-
             </nav>
             
             <div className="h-5 w-px bg-border hidden sm:block"></div>
@@ -197,7 +205,7 @@ export default function Home() {
       <main className="container mx-auto px-4">
         {/* HERO SECTION */}
         <section className="flex flex-col items-center justify-center pt-24 pb-20 text-center">
-          <div className="relative mb-6 h-36 w-36 overflow-hidden rounded-full border-2 border-border shadow-lg">
+          <div className="relative mb-6 h-50 w-50 overflow-hidden rounded-full border-2 border-border shadow-lg">
             <Image
               src="/headshot.png"
               alt="Liam Tanner headshot"
@@ -214,7 +222,7 @@ export default function Home() {
             Software Engineer
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mb-8">
-            I like to solve problems and learn new things every day.
+            Welcome to my personal portfolio website
           </p>
           <div className="flex gap-4">
             <Link 
@@ -238,16 +246,13 @@ export default function Home() {
                 
                 {/* 1. THE CARD (This acts as the button to open the modal) */}
                 <DialogTrigger className="text-left w-full group outline-none">
-                  {/* Updated: Changed border hover color to match gold theme */}
                   <Card className="flex flex-col justify-between h-full cursor-pointer transition-all duration-300 group-hover:-translate-y-1 group-hover:border-yellow-500/30 group-hover:shadow-[0_0_40px_rgba(255,255,0,0.25)] bg-card/50 backdrop-blur-sm">
                     <div>
                       <CardHeader>
                         <div className="flex justify-between items-start pb-2">
-                          {/* Updated: Added smooth gold text color on group-hover */}
                           <CardTitle className="text-xl transition-colors duration-300 group-hover:text-yellow-400">{project.title}</CardTitle>
                           <span className="text-sm text-muted-foreground whitespace-nowrap ml-4">{project.date}</span>
                         </div>
-                        {/* We use line-clamp-3 here so the preview text doesn't make the card too massive */}
                         <CardDescription className="text-base text-foreground mt-2 line-clamp-3">
                           {project.description}
                         </CardDescription>
@@ -266,7 +271,7 @@ export default function Home() {
                 </DialogTrigger>
 
                 {/* 2. THE MODAL (This pops up when the card is clicked) */}
-                <DialogContent className="sm:max-w-[700px] bg-background border-border">
+                <DialogContent className="sm:max-w-[800px] bg-background border-border max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <div className="flex justify-between items-start pr-6 gap-4">
                       <DialogTitle className="text-2xl font-bold leading-tight">
@@ -276,14 +281,13 @@ export default function Home() {
                         {project.date}
                       </span>
                     </div>
-                    {/* The full description without truncation */}
                     <DialogDescription className="text-lg text-foreground mt-6 leading-relaxed">
                       {project.description}
                     </DialogDescription>
                   </DialogHeader>
 
-                  <div className="flex flex-col gap-6 mt-4">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-col mt-2">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {project.tech.map((tech, techIndex) => (
                         <Badge key={techIndex} variant="secondary" className="px-3 py-1 text-sm">
                           {tech}
@@ -291,17 +295,74 @@ export default function Home() {
                       ))}
                     </div>
 
-                    {/* We moved the link inside the modal so it's the main call-to-action */}
-                    {project.link && (
-                      <div className="flex justify-end pt-4 border-t">
-                        <Link 
-                          href={project.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className={buttonVariants({ variant: "default" })}
-                        >
-                          View Source
-                        </Link>
+                  {/* DYNAMIC MEDIA SECTION */}
+                  {project.images && project.images.length > 0 && (
+                    <div className={`grid gap-4 mb-6 ${project.images.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                      {project.images.map((mediaSrc, mediaIndex) => {
+                        // Check if the file is a video
+                        const isVideo = mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm');
+
+                        return (
+                          <div key={mediaIndex} className="relative w-full overflow-hidden rounded-lg border border-border shadow-sm bg-muted/20">
+                            {isVideo ? (
+                              <video
+                                src={mediaSrc}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-auto"
+                              />
+                            ) : (
+                              <Image
+                                src={mediaSrc}
+                                alt={`${project.title} preview ${mediaIndex + 1}`}
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                className="w-full h-auto" 
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                    {(project.link || project.liveLink || project.demoLink) && (
+                      <div className="flex justify-end gap-3 pt-4 border-t mt-auto">
+                        
+                        {project.link && (
+                          <Link 
+                            href={project.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className={buttonVariants({ variant: "outline" })}
+                          >
+                            View Source
+                          </Link>
+                        )}
+
+                        {project.liveLink && (
+                          <Link 
+                            href={project.liveLink} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className={buttonVariants({ variant: "default" })}
+                          >
+                            View Live Site
+                          </Link>
+                        )}
+                        {project.demoLink && (
+                            <Link 
+                              href={project.demoLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className={buttonVariants({ variant: "default" })}
+                            >
+                              View Demo
+                            </Link>
+                          )} 
                       </div>
                     )}
                   </div>
@@ -419,8 +480,6 @@ export default function Home() {
 
       </main>
 
-
-      
       {/* FOOTER */}
       <footer className="border-t py-6 text-center text-sm text-muted-foreground">
         <p>© {new Date().getFullYear()} Liam Tanner. All rights reserved.</p>
