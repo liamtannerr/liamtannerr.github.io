@@ -133,7 +133,7 @@ export default function Home() {
       date: "Feb 2026",
       description: "Engineered a regularized logistic regression model for breast cancer diagnosis, achieving a 98.59% accuracy on the WDBC dataset by implementing a regularized softmax cost function and gradient descent from scratch.",
       tech: ["MATLAB", "Machine Learning"],
-      link: null,
+      link: "https://github.com/liamtannerr/Optimization-Papers/blob/main/LogisticRegression.pdf",
     },
     {
       title: "AI Exoplanet Identifier and Visualizer",
