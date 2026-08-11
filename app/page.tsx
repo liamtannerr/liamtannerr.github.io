@@ -141,7 +141,7 @@ export default function Home() {
       description: "Trained a Random Forest model to classify whether or not an event is likely to be an exoplanet using NASA's Kepler data for the NASA Space Apps Hackathon.",
       tech: ["Scikit-learn", "Python"],
       link: "https://github.com/liamtannerr/exoplanet-identifier/tree/deploy",
-      liveLink: "https://exoplanet-identifier-front.vercel.app/",
+      liveLink: "https://exovis.vercel.app",
       images: ["ExoVis1-Pic.png", "ExoVis2-Pic.png"],
     },
     {
