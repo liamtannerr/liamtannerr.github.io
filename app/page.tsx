@@ -232,7 +232,7 @@ export default function Home() {
               priority
             />
             {/* DYNAMIC OVERLAY: Adapts to light/dark mode and adds a slight blur */}
-            <div className="absolute inset-0 bg-background/30 backdrop-blur-[1px]"></div>
+            <div className="absolute inset-0 bg-background/15 backdrop-blur-[1px]"></div>
           </div>
 
           {/* HERO CONTENT (Wrapped in relative z-10 to float above the background) */}
@@ -273,7 +273,7 @@ export default function Home() {
         {/* PROJECTS SECTION */}
         <section id="projects" className="w-full relative overflow-hidden">
           {/* THE POINTING BACKGROUND IMAGE */}
-          <div className="absolute top-40 right-0 w-20 md:w-[23rem] z-0 opacity-80 pointer-events-none select-none">
+          <div className="hidden md:block absolute top-40 right-0 md:w-[23rem] z-0 opacity-90 pointer-events-none select-none">
             <Image
               src="pointing.png"
               alt="Pointing at projects"
@@ -285,8 +285,7 @@ export default function Home() {
           </div>
 
           {/* THE CONTENT */}
-            <div className="container mx-auto pl-4 pr-10 sm:pr-36 md:pr-[12rem] py-20 border-t relative z-10">
-            <h2 className="text-3xl font-bold tracking-tight mb-8">Projects</h2>
+            <div className="container mx-auto px-4 md:pr-[12rem] py-20 border-t relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, index) => (
                 <Dialog key={index}>
