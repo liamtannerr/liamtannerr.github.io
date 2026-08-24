@@ -73,8 +73,8 @@ export default function Home() {
       date: "Jan 2025 — Present",
       link: "https://auvic.ca/index.html",
       bullets: [
-        "Engineered a ROS 2 dynamic configuration pipeline to extract PID values and Kalman filter matrices from YAML files, eliminating C++ recompilation downtime and enabling real-time parameter tuning during pool testing.",
-        "Represented the University of Victoria at RoboSub 2026 in Irvine, California, resolving critical thruster saturation limits in the C++ control loop and engineering a state machine for autonomous navigation, advancing the team to the semi-finals of an international engineering competition.",
+        "Engineered a ROS 2 dynamic configuration pipeline to extract PID and Kalman filter values from YAML files, eliminating C++ recompilation downtime and enabling real-time parameter tuning during pool testing of an autonomous submarine.",
+        "Represented the University of Victoria at RoboSub 2026 in Irvine, California, resolving critical thruster saturation limits and engineering a state machine for autonomous navigation, advancing the team to the semi-finals of an international engineering competition.",
       ],
     },
     {
@@ -202,18 +202,18 @@ export default function Home() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="font-bold text-xl tracking-tight">Liam Tanner</div>
           <div className="flex items-center gap-4">
-            <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
-              <Link href="#projects" className="hover:text-foreground transition-colors">
+<nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
+              <Link href="#projects" className="hover:text-amber-400 transition-colors">
                 Projects
               </Link>
-              <Link href="#experience" className="hover:text-foreground transition-colors">
+              <Link href="#experience" className="hover:text-amber-400 transition-colors">
                 Experience
               </Link>
-              <Link href="#about" className="hover:text-foreground transition-colors">
+              <Link href="#about" className="hover:text-amber-400 transition-colors">
                 About Me
               </Link>
             </nav>
-            <div className="h-5 w-px bg-border hidden sm:block"></div>
+            <div className="h-5 w-px bg-border hidden sm:block" ></div>
             <ThemeToggle />
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function Home() {
         {/* PROJECTS SECTION */}
         <section id="projects" className="w-full relative overflow-hidden">
           {/* THE POINTING BACKGROUND IMAGE */}
-          <div className="absolute top-40 right-0 w-42 md:w-[23rem] z-0 opacity-80 pointer-events-none select-none">
+          <div className="absolute top-40 right-0 w-28 md:w-[23rem] z-0 opacity-80 pointer-events-none select-none">
             <Image
               src="pointing.png"
               alt="Pointing at projects"
@@ -285,24 +285,33 @@ export default function Home() {
           </div>
 
           {/* THE CONTENT */}
-          <div className="container mx-auto px-4 md:pr-[12rem] py-20 border-t relative z-10">
+            <div className="container mx-auto pl-4 pr-20 sm:pr-36 md:pr-[12rem] py-20 border-t relative z-10">
             <h2 className="text-3xl font-bold tracking-tight mb-8">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, index) => (
                 <Dialog key={index}>
-                  {/* 1. THE CARD */}
-                  <DialogTrigger className="text-left w-full group outline-none">
-                    <Card className="flex flex-col justify-between h-full cursor-pointer transition-all duration-300 group-hover:-translate-y-1 group-hover:border-yellow-500/30 group-hover:shadow-[0_0_40px_rgba(255,255,0,0.25)] bg-card/50 backdrop-blur-sm transform-gpu">
-                      <div>
+                  {/* 1. THE CARD CONTAINER */}
+                  <div className="relative h-full group outline-none">
+                    <Card className="relative flex flex-col justify-between h-full overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:border-amber-400/30 group-hover:shadow-[0_0_40px_rgba(251,191,36,0.4)] bg-card/50 backdrop-blur-sm will-change-transform">
+                      
+                      {/* THE INVISIBLE BUTTON OVERLAY */}
+                      
+                      {/* THE INVISIBLE BUTTON OVERLAY */}
+                      <DialogTrigger className="absolute inset-0 w-full h-full z-20 cursor-pointer outline-none border-none bg-transparent">
+                        <span className="sr-only">View {project.title} details</span>
+                      </DialogTrigger>
+
+                      {/* CARD CONTENT (Wrapped to sit securely beneath the invisible button) */}
+                      <div className="relative z-10 pointer-events-none">
                         <CardHeader>
                           <div className="flex justify-between items-start pb-2">
-                            <CardTitle className="text-xl transition-colors duration-300 group-hover:text-yellow-400">
+                            <CardTitle className="text-xl transition-colors duration-300 group-hover:text-amber-400">
                               {project.title}
                             </CardTitle>
                             <span className="text-sm text-muted-foreground whitespace-nowrap ml-4">
                               {project.date}
                             </span>
-                          </div>
+                          </div>      
                           <CardDescription className="text-base text-foreground mt-2 line-clamp-3">
                             {project.description}
                           </CardDescription>
@@ -318,7 +327,7 @@ export default function Home() {
                         </CardContent>
                       </div>
                     </Card>
-                  </DialogTrigger>
+                  </div>
 
                   {/* 2. THE MODAL */}
                   <DialogContent className="sm:max-w-[800px] bg-background border-border max-h-[90vh] overflow-y-auto">
@@ -481,38 +490,24 @@ export default function Home() {
         {/* ABOUT SECTION */}
         <section id="about" className="container mx-auto px-4 py-20 border-t">
           <h2 className="text-3xl font-bold tracking-tight mb-8">About Me</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-foreground">Who I am</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Outside of tech, I am an athlete and an outdoorsman. I grew up playing competitive
-                hockey, and love spending time in the mountains, racing enduro mountain bikes and
+                Outside of tech, I like to play sports and explore nature. I grew up playing
+                hockey and baseball, and love spending time in the mountains, racing enduro mountain bikes and
                 skiing. This connection to the outdoors has directly shaped my professional life.
                 During an 8-month co-op with Natural Resources Canada on the Induced Seismicity
                 Project, I modeled real-world sites to ensure fracking and wastewater disposal
                 wouldn't trigger harmful seismic activity in remote communities. Later, as a
-                software developer at the Pacific Forestry Centre, I collaborated with like-minded
-                engineers and scientists who care deeply about protecting BC’s forests. For me,
-                software hasn't just about building applications; it's about engineering systems
-                that interact with and protect the physical world.
+                Software Developer at the Pacific Forestry Centre, I collaborated with like-minded
+                engineers and scientists who care deeply about protecting BC’s forests. In my final two years
+                at the University of Victoria, I've been building skills in machine learning and computer vision
+                such as mathematical optimization, data mining techniques and the design and training of convolutional
+                neural networks; exploring these skills through projects, class work and contributions as a member
+                of the Autonomous Underwater Vehicles Interdisciplinary Club, where we build autonomous submarines. 
+                Through the club, I represented my University at RoboSub 2026
+                in Irvine, California. On top of that, I always have fun playing around with full stack and web dev
+                projects like the website you are currently on!
               </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-foreground">My story</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                I walked into the University of Victoria without any previous coding experience. My
-                first computer science class was a brutal wake-up call, I was used to visualizing
-                math and physics, and abstract code didn’t click the same. That initial struggle
-                fuelled my early passion for software engineering as I have always enjoyed a
-                challenge. My focus on machine learning, robotics and GPU programming began when I
-                joined the Autonomous Underwater Vehicles Club (AUVIC) on the computer vision team
-                at the beginning of 2025. Seeing firsthand how critical efficient GPU computing is
-                for real-time robotics completely rewired my focus. That hands-on experience drove
-                the tail end of my degree, pushing me to specialize in mathematical optimization and
-                computer vision, ultimately finishing my final year of study with a 93% academic
-                average. The learning curve never ends, and I'm still climbing.
-              </p>
-            </div>
           </div>
         </section>
 
