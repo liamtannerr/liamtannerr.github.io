@@ -238,7 +238,7 @@ export default function Home() {
           {/* HERO CONTENT (Wrapped in relative z-10 to float above the background) */}
           <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center">
             {/* Added transition-transform, duration-1000, and hover:[transform:rotateY(180deg)_scale(1.2)] */}
-            <div className="relative mb-6 h-[200px] w-[200px] overflow-hidden rounded-full border-2 border-border shadow-lg cursor-pointer transition-transform duration-800 ease-in-out hover:[transform:rotateY(180deg)_scale(1.2)]">
+            <div className="relative mb-6 h-[250px] w-[250px] overflow-hidden rounded-full border-2 border-border shadow-lg cursor-pointer transition-transform duration-800 ease-in-out hover:[transform:rotateY(180deg)_scale(1.2)]">
               <Image
                 src="face.jpg"
                 alt="Liam Tanner headshot"
