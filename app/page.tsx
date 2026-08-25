@@ -199,17 +199,29 @@ export default function Home() {
     <div className="min-h-screen bg-background font-sans antialiased overflow-x-hidden">
       {/* HEADER / NAVBAR */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="font-bold text-xl tracking-tight">Liam Tanner</div>
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          <div className="font-bold text-xl tracking-tight bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
+            Liam Tanner
+          </div>
+          
           <div className="flex items-center gap-4">
-<nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
-              <Link href="#projects" className="hover:text-amber-400 transition-colors">
+          <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
+              <Link 
+                href="#projects" 
+                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+              >
                 Projects
               </Link>
-              <Link href="#experience" className="hover:text-amber-400 transition-colors">
+              <Link 
+                href="#experience" 
+                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+              >
                 Experience
               </Link>
-              <Link href="#about" className="hover:text-amber-400 transition-colors">
+              <Link 
+                href="#about" 
+                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+              >
                 About Me
               </Link>
             </nav>
@@ -286,31 +298,31 @@ export default function Home() {
 
           {/* THE CONTENT */}
             <div className="container mx-auto px-4 md:pr-[12rem] py-20 border-t relative z-10">
+            <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+              Projects
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, index) => (
                 <Dialog key={index}>
                   {/* 1. THE CARD CONTAINER */}
                   <div className="relative h-full group outline-none">
-                    <Card className="relative flex flex-col justify-between h-full overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:border-amber-400/30 group-hover:shadow-[0_0_40px_rgba(251,191,36,0.4)] bg-card/50 backdrop-blur-sm will-change-transform">
-                      
-                      {/* THE INVISIBLE BUTTON OVERLAY */}
-                      
+                    {/* CHANGED: Replaced solid shadow with a dual amber/orange shadow and orange border */}
+                    <Card className="relative flex flex-col justify-between h-full overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:border-orange-400/30 group-hover:shadow-[-25px_0_50px_rgba(252,211,77,0.3),_25px_0_50px_rgba(249,115,22,0.45)] bg-card/50 backdrop-blur-sm will-change-transform">
                       {/* THE INVISIBLE BUTTON OVERLAY */}
                       <DialogTrigger className="absolute inset-0 w-full h-full z-20 cursor-pointer outline-none border-none bg-transparent">
                         <span className="sr-only">View {project.title} details</span>
                       </DialogTrigger>
-
                       {/* CARD CONTENT (Wrapped to sit securely beneath the invisible button) */}
                       <div className="relative z-10 pointer-events-none">
                         <CardHeader>
                           <div className="flex justify-between items-start pb-2">
-                            <CardTitle className="text-xl transition-colors duration-300 group-hover:text-amber-400">
+                            <CardTitle className="text-xl transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-amber-300 group-hover:via-orange-400 group-hover:to-orange-500 group-hover:bg-clip-text group-hover:text-transparent">
                               {project.title}
                             </CardTitle>
                             <span className="text-sm text-muted-foreground whitespace-nowrap ml-4">
                               {project.date}
                             </span>
-                          </div>      
+                          </div>     
                           <CardDescription className="text-base text-foreground mt-2 line-clamp-3">
                             {project.description}
                           </CardDescription>
@@ -332,8 +344,7 @@ export default function Home() {
                   <DialogContent className="sm:max-w-[800px] bg-background border-border max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                       <div className="flex justify-between items-start pr-6 gap-4">
-                        <DialogTitle className="text-2xl font-bold leading-tight">
-                          {project.title}
+                        <DialogTitle className="text-2xl font-bold leading-tight bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">                          {project.title}
                         </DialogTitle>
                         <span className="text-sm text-muted-foreground whitespace-nowrap mt-1">
                           {project.date}
@@ -438,8 +449,9 @@ export default function Home() {
 
         {/* EXPERIENCE SECTION */}
         <section id="experience" className="container mx-auto px-4 py-20 border-t">
-          <h2 className="text-3xl font-bold tracking-tight mb-8">Experience</h2>
-          <div className="space-y-6">
+            <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+              Experience
+            </h2>          <div className="space-y-6">
             {experience.map((job, index) => (
               <Card key={index} className="w-full flex flex-col justify-between">
                 <div>
@@ -488,7 +500,9 @@ export default function Home() {
 
         {/* ABOUT SECTION */}
         <section id="about" className="container mx-auto px-4 py-20 border-t">
-          <h2 className="text-3xl font-bold tracking-tight mb-8">About Me</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+              About Me
+            </h2>            
             <div>
               <p className="text-muted-foreground leading-relaxed">
                 Outside of tech, I like to play sports and explore nature. I grew up playing
@@ -512,7 +526,9 @@ export default function Home() {
 
         {/* CONTACT SECTION */}
         <section id="contact" className="container mx-auto px-4 py-24 border-t text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Let's Connect</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-4 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit mx-auto">
+            Let's Connect
+          </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             I am currently looking for new opportunities and collaborations. Whether you have a
             question about my work or just want to say hi, I will try my best to get back to you!
