@@ -284,8 +284,9 @@ export default function Home() {
 
         {/* PROJECTS SECTION */}
         <section id="projects" className="w-full relative overflow-hidden">
+          
           {/* THE POINTING BACKGROUND IMAGE */}
-          <div className="hidden md:block absolute top-40 right-0 md:w-[23rem] z-0 opacity-90 pointer-events-none select-none">
+          <div className="hidden lg:block absolute top-50 right-0 w-[23rem] z-0 opacity-90 pointer-events-none select-none">
             <Image
               src="pointing.png"
               alt="Pointing at projects"
@@ -297,16 +298,18 @@ export default function Home() {
           </div>
 
           {/* THE CONTENT */}
-            <div className="container mx-auto px-4 md:pr-[12rem] py-20 border-t relative z-10">
+          {/* CHANGED: Changed md:pr-[25rem] to xl:pr-[25rem] so padding only applies on large screens */}
+          <div className="container mx-auto px-4 lg:pr-[18rem] py-20 border-t relative z-10">
             <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
               Projects
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* CHANGED: Changed md:grid-cols-2 to xl:grid-cols-2 to drop to a single column much sooner */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projects.map((project, index) => (
                 <Dialog key={index}>
                   {/* 1. THE CARD CONTAINER */}
                   <div className="relative h-full group outline-none">
-                    {/* CHANGED: Replaced solid shadow with a dual amber/orange shadow and orange border */}
                     <Card className="relative flex flex-col justify-between h-full overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:border-orange-400/30 group-hover:shadow-[-25px_0_50px_rgba(252,211,77,0.3),_25px_0_50px_rgba(249,115,22,0.45)] bg-card/50 backdrop-blur-sm will-change-transform">
                       {/* THE INVISIBLE BUTTON OVERLAY */}
                       <DialogTrigger className="absolute inset-0 w-full h-full z-20 cursor-pointer outline-none border-none bg-transparent">
