@@ -84,7 +84,7 @@ export default function Home() {
       date: "June — Dec 2025",
       link: null,
       bullets: [
-        "Engineered automated data processing pipelines to transform large PostgreSQL datasets into optimized SQLite and flatfile releases, reducing processing time from hours to seconds.",
+        "Engineered automated data processing pipelines to transform large PostgreSQL datasets into SQLite and flatfile releases, reducing processing time from hours to seconds.",
         "Engineered a release-versioning system using SQL and encryption to encode and track all future release metadata.",
         "Rebuilt a legacy public website from scratch in JavaScript, then wrote Bash scripts to automate the process for all future developers on my team.",
       ],
@@ -96,7 +96,7 @@ export default function Home() {
       date: "Sept 2023 — April 2024",
       link: null,
       bullets: [
-        "Engineered 3 increasingly complex CO₂ injection simulations using Python meshes and the OpenGeoSys finite element solver, becoming the first NRCan employee to implement this workflow successfully.",
+        "Engineered 3 increasingly complex CO₂ injection simulations using Python meshes and the OpenGeoSys finite element solver, becoming the first NRCan researcher to implement this workflow successfully.",
         "Advanced the project from stylized models to a real-world case study by engineering a 3-layer finite element simulation of the SECURE INGA wastewater disposal well, utilizing precise depth profiles and material properties.",
       ],
     },
@@ -107,7 +107,7 @@ export default function Home() {
       title: "Motion Estimation Video Compression Optimizations",
       date: "July - Aug 2026",
       description:
-        "Engineered a high-performance 16x16 Sum-of-Absolute-Differences (SAD) kernel for block-matching motion estimation on an ARM architecture. Developed a custom, stateless SAD4 operation, and integrated it via a patched QEMU emulator and inline assembly. Achieved an 11.89x execution speedup using the custom opcode and a peak 34.93x speedup by implementing an ARM NEON SIMD vectorization pipeline.",
+        "Optimized a 16x16 Sum-of-Absolute-Differences (SAD) kernel for motion estimation on an ARM architecture. Developed a custom, stateless SAD4 operation, and integrated it via a patched QEMU emulator and inline assembly. Achieved an 11.89x execution speedup using the custom opcode and a peak 34.93x speedup by implementing an ARM NEON SIMD vectorization pipeline.",
       tech: ["C", "ARM Assembly", "Hardware Optimization"],
       link: "https://github.com/BenJTowers/motion_estimation/blob/main/report/SAD_Optimizations_for_Motion_Estimation.pdf",
       images: ["Motion-Estimation-Pic.png"],
@@ -116,7 +116,7 @@ export default function Home() {
       title: "AI Incident Orchestrator",
       date: "May - Aug 2026",
       description:
-        "Engineered a production-ready AI orchestration pipeline leveraging LLMs and RAG context to automate system incident triage in a distributed environment. Collaborated within a 17-member software engineering team utilizing automated test harnesses and GitHub Actions CI/CD to validate system stability.",
+        "Engineered a production-ready AI orchestration pipeline for diagnosing and providing recommended actions to mitigate cyber security threats. Leveraged LLMs and RAG context to automate recommendation generation in a distributed environment.",
       tech: ["Python", "PostgreSQL", "Groq API", "CI/CD"],
       link: null,
       images: ["ACIRO-Pic.png"],
@@ -147,11 +147,11 @@ export default function Home() {
       link: "https://github.com/liamtannerr/Optimization-Papers/blob/main/LogisticRegression.pdf",
     },
     {
-      title: "AI Exoplanet Identifier and Visualizer",
+      title: "ML Exoplanet Identifier and Visualizer",
       date: "Oct 2025",
       description:
-        "Trained a Random Forest model to classify whether or not an event is likely to be an exoplanet using NASA's Kepler data for the NASA Space Apps Hackathon.",
-      tech: ["Scikit-learn", "Python"],
+        "Trained a Random Forest model to classify whether or not an event is likely to be an exoplanet using NASA's Kepler data for the NASA Space Apps Hackathon. Built an interactive application to visualize the data, hosting the frontend on Vercel and the backend/ML on Render. Check out this live site below!",
+      tech: ["Scikit-learn", "Python", "Vercel", "Render"],
       link: "https://github.com/liamtannerr/exoplanet-identifier/tree/deploy",
       liveLink: "https://exovis.vercel.app",
       images: ["ExoVis1-Pic.png", "ExoVis2-Pic.png"],
@@ -169,7 +169,7 @@ export default function Home() {
       title: "Embedded Traffic Light Simulation",
       date: "Feb — March 2025",
       description:
-        "Engineered the hardware architecture for an STM32F4-based traffic simulation, integrating a custom circuit with 22 LEDs, a potentiometer, and 3 daisy-chained shift registers. Synchronized the 19-bit LED array via shared GPIO pins and ensured circuit safety by calculating and wiring precise series resistors to protect the power supply and components.",
+        "Designed the hardware architecture for an STM32F4-based traffic simulation, using 22 LEDs, a potentiometer, and 3 daisy-chained shift registers. Synchronized the 19-bit LED array to simulate traffic flow through a stoplight controlled intersection. Calculated and wired precise series resistors to protect the power supply and components.",
       tech: ["RTOS", "Circuit Design", "Embedded C"],
       link: "https://github.com/liamtannerr/Traffic-Lights",
       images: ["TrafficLights-Pic.png"],
@@ -188,8 +188,8 @@ export default function Home() {
       title: "Autonomous IR Detecting Robot",
       date: "Jan — Apr 2022",
       description:
-        "Engineered an IR light detection robot from scratch, capable of detecting an IR beacon, travelling towards it and depositing a payload.",
-      tech: ["ROBOTC", "C"],
+        "Built a custom IR light detection robot capable of detecting an IR beacon, travelling towards it and depositing a payload.",
+      tech: ["C"],
       images: ["Robo.mp4"],
       link: null,
     },
@@ -267,7 +267,7 @@ export default function Home() {
               Software Engineer
             </h1>
             <p className="text-xl text-foreground font-medium max-w-2xl mb-8">
-              Welcome to my personal portfolio website
+              Welcome to my portfolio website
             </p>
             <div className="flex gap-4">
               <Link
