@@ -332,11 +332,9 @@ export default function Home() {
                         </CardHeader>
                         <CardContent>
                           <div className="flex flex-wrap gap-2 mt-2">
-                          {project.tech.map((tech, techIndex) => (
+                            {project.tech.map((tech, techIndex) => (
                               <Badge key={techIndex} variant="secondary">
-                                <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
-                                  {tech}
-                                </span>
+                                {tech}
                               </Badge>
                             ))}
                           </div>
@@ -362,11 +360,9 @@ export default function Home() {
 
                     <div className="flex flex-col mt-2">
                       <div className="flex flex-wrap gap-2 mb-6">
-                          {project.tech.map((tech, techIndex) => (
+                        {project.tech.map((tech, techIndex) => (
                           <Badge key={techIndex} variant="secondary" className="px-3 py-1 text-sm">
-                            <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
-                              {tech}
-                            </span>
+                            {tech}
                           </Badge>
                         ))}
                       </div>
