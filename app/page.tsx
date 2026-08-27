@@ -267,7 +267,7 @@ export default function Home() {
               Software Engineer
             </h1>
             <p className="text-xl text-foreground font-medium max-w-2xl mb-8">
-              Welcome to my portfolio website
+              Welcome to my Portfolio Website
             </p>
             <div className="flex gap-4">
               <Link
@@ -332,9 +332,11 @@ export default function Home() {
                         </CardHeader>
                         <CardContent>
                           <div className="flex flex-wrap gap-2 mt-2">
-                            {project.tech.map((tech, techIndex) => (
+                          {project.tech.map((tech, techIndex) => (
                               <Badge key={techIndex} variant="secondary">
-                                {tech}
+                                <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
+                                  {tech}
+                                </span>
                               </Badge>
                             ))}
                           </div>
@@ -360,9 +362,11 @@ export default function Home() {
 
                     <div className="flex flex-col mt-2">
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tech.map((tech, techIndex) => (
+                          {project.tech.map((tech, techIndex) => (
                           <Badge key={techIndex} variant="secondary" className="px-3 py-1 text-sm">
-                            {tech}
+                            <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
+                              {tech}
+                            </span>
                           </Badge>
                         ))}
                       </div>
