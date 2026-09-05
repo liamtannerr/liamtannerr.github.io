@@ -86,7 +86,7 @@ export default function Home() {
       bullets: [
         "Engineered automated data processing pipelines to transform large PostgreSQL datasets into SQLite and flatfile releases, reducing processing time from hours to seconds.",
         "Engineered a release-versioning system using SQL and encryption to encode and track all future release metadata.",
-        "Rebuilt a legacy public website from scratch in JavaScript, then wrote Bash scripts to automate the process for all future developers on my team.",
+        "Authored custom Linux Bash scripts to automate the extraction and repair of a legacy website without source code, enabling the engineering team to instantiate a fully functional local environment with a single command.",
       ],
     },
     {
