@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
@@ -21,7 +24,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import { Mail } from "lucide-react";
+// Imported GraduationCap and Award icons for the new section
+import { Mail, GraduationCap, Award } from "lucide-react";
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -65,12 +69,84 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function Home() {
+  const [title1, setTitle1] = useState("");
+  const [title2, setTitle2] = useState("");
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const fullTitle1 = "Liam Tanner";
+    const fullTitle2 = "Software Engineer";
+
+    let current1 = "";
+    let current2 = "";
+    let i = 0;
+    let j = 0;
+    let interval1: ReturnType<typeof setInterval>;
+    let interval2: ReturnType<typeof setInterval>;
+
+    const startTyping2 = () => {
+      setPhase(1);
+      interval2 = setInterval(() => {
+        current2 = fullTitle2.substring(0, j + 1);
+        setTitle2(current2);
+        j++;
+        if (j >= fullTitle2.length) {
+          clearInterval(interval2);
+          setPhase(2);
+        }
+      }, 70);
+    };
+
+    const startTyping1 = () => {
+      interval1 = setInterval(() => {
+        current1 = fullTitle1.substring(0, i + 1);
+        setTitle1(current1);
+        i++;
+        if (i >= fullTitle1.length) {
+          clearInterval(interval1);
+          setTimeout(startTyping2, 400); 
+        }
+      }, 100);
+    };
+
+    const initialDelay = setTimeout(startTyping1, 300);
+
+    return () => {
+      clearTimeout(initialDelay);
+      clearInterval(interval1);
+      clearInterval(interval2);
+    };
+  }, []);
+
+  const skills = [
+    { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
+    { name: "C++", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
+    { name: "C", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" },
+    { name: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+    { name: "Rust", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg" },
+    { name: "Bash", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" },
+    { name: "Linux", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" },
+    { name: "MATLAB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matlab/matlab-original.svg" },
+    { name: "ReactJS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+    { name: "FastAPI", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
+    { name: "PostgreSQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
+    { name: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
+    { name: "Docker", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
+    { name: "AWS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+    { name: "PyTorch", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" },
+    { name: "Scikit-learn", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" },
+    { name: "NumPy", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" },
+    { name: "OpenCV", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg" },
+    { name: "ROS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ros/ros-original.svg" },
+    { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+  ];
+
   const experience = [
     {
       role: "Software Engineer",
       company: "AUVIC - Autonomous Underwater Vehicles Club",
       location: "Victoria, BC",
-      date: "Jan 2025 — Present",
+      date: "Jan 2025 — Aug 2026",
       link: "https://auvic.ca/index.html",
       bullets: [
         "Engineered a ROS 2 dynamic configuration pipeline to extract PID and Kalman filter values from YAML files, eliminating C++ recompilation downtime and enabling real-time parameter tuning during pool testing of an autonomous submarine.",
@@ -100,6 +176,45 @@ export default function Home() {
         "Advanced the project from stylized models to a real-world case study by engineering a 3-layer finite element simulation of the SECURE INGA wastewater disposal well, utilizing precise depth profiles and material properties.",
       ],
     },
+  ];
+
+  // Updated Data based on your most recent screenshot additions
+  const education = [
+    {
+      degree: "Bachelor of Software Engineering",
+      school: "University of Victoria",
+      location: "Victoria, BC",
+      date: "Sept 2021 — Aug 2026",
+      gpaLines: [
+        "8.80/9.00 GPA (93% Avg) During my final year.",
+        "8.05/9.00 Overall GPA."
+      ],
+      courses: [
+        "Optimization for Machine Learning",
+        "Computer Vision",
+        "Embedded Systems",
+        "Communication Networks",
+        "Operating Systems",
+        "Database Systems",
+        "Data Mining",
+        "Security Engineering",
+        "Software Architecture & Design",
+        "Control Theory",
+        "Microprocessor-Based Systems",
+        "Matrix Algebra",
+        "Probability and Statistics",
+        "Signal Processing",
+        "Algorithms & Data Structures I & II"
+      ],
+    }
+  ];
+
+  const certifications = [
+    {
+      title: "AWS Cloud Practitioner Essentials",
+      issuer: "Amazon Web Services (AWS)",
+      description: "Foundational certification covering AWS Cloud concepts, security, architecture, core services, and distributed systems."
+    }
   ];
 
   const projects = [
@@ -197,6 +312,27 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased overflow-x-hidden">
+      {/* CUSTOM CSS FOR MARQUEE ANIMATION */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+        .mask-image-fade {
+          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+      `}} />
+
       {/* HEADER / NAVBAR */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -219,6 +355,12 @@ export default function Home() {
                 Experience
               </Link>
               <Link 
+                href="#education" 
+                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+              >
+                Education
+              </Link>
+              <Link 
                 href="#about" 
                 className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
               >
@@ -234,7 +376,6 @@ export default function Home() {
       <main className="w-full">
         {/* HERO SECTION */}
         <section className="relative w-full flex flex-col items-center justify-center pt-32 pb-32 text-center overflow-hidden border-b">
-          {/* NATURE BACKGROUND IMAGE */}
           <div className="absolute inset-0 z-0">
             <Image
               src="banner.JPEG"
@@ -243,13 +384,10 @@ export default function Home() {
               className="object-cover object-center"
               priority
             />
-            {/* DYNAMIC OVERLAY: Adapts to light/dark mode and adds a slight blur */}
             <div className="absolute inset-0 bg-background/15 backdrop-blur-[1px]"></div>
           </div>
 
-          {/* HERO CONTENT (Wrapped in relative z-10 to float above the background) */}
           <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center">
-            {/* Added transition-transform, duration-1000, and hover:[transform:rotateY(180deg)_scale(1.2)] */}
             <div className="relative mb-6 h-[250px] w-[250px] overflow-hidden rounded-full border-2 border-border shadow-lg cursor-pointer transition-transform duration-600 ease-in-out hover:[transform:rotateY(180deg)_scale(1.1)]">
               <Image
                 src="face.jpg"
@@ -261,11 +399,15 @@ export default function Home() {
             </div>
 
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
-              Liam Tanner
+              {title1}
+              {phase === 0 && <span className="animate-pulse text-muted-foreground font-light">|</span>}
             </h1>
+            
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
-              Software Engineer
+              {title2 || (phase === 0 ? "\u00A0" : "")}
+              {phase === 1 && <span className="animate-pulse text-muted-foreground font-light">|</span>}
             </h1>
+
             <p className="text-xl text-foreground font-medium max-w-2xl mb-8">
               Welcome to my Portfolio Website
             </p>
@@ -284,8 +426,6 @@ export default function Home() {
 
         {/* PROJECTS SECTION */}
         <section id="projects" className="w-full relative overflow-hidden">
-          
-          {/* THE POINTING BACKGROUND IMAGE */}
           <div className="hidden lg:block absolute top-50 right-0 w-[23rem] z-0 opacity-90 pointer-events-none select-none">
             <Image
               src="pointing.png"
@@ -297,25 +437,19 @@ export default function Home() {
             />
           </div>
 
-          {/* THE CONTENT */}
-          {/* CHANGED: Changed md:pr-[25rem] to xl:pr-[25rem] so padding only applies on large screens */}
           <div className="container mx-auto px-4 lg:pr-[18rem] py-20 border-t relative z-10">
             <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
               Projects
             </h2>
             
-            {/* CHANGED: Changed md:grid-cols-2 to xl:grid-cols-2 to drop to a single column much sooner */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projects.map((project, index) => (
                 <Dialog key={index}>
-                  {/* 1. THE CARD CONTAINER */}
                   <div className="relative h-full group outline-none">
                     <Card className="relative flex flex-col justify-between h-full overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:border-orange-400/30 group-hover:shadow-[-25px_0_50px_rgba(252,211,77,0.3),_25px_0_50px_rgba(249,115,22,0.45)] bg-card/50 backdrop-blur-sm will-change-transform">
-                      {/* THE INVISIBLE BUTTON OVERLAY */}
                       <DialogTrigger className="absolute inset-0 w-full h-full z-20 cursor-pointer outline-none border-none bg-transparent">
                         <span className="sr-only">View {project.title} details</span>
                       </DialogTrigger>
-                      {/* CARD CONTENT (Wrapped to sit securely beneath the invisible button) */}
                       <div className="relative z-10 pointer-events-none">
                         <CardHeader>
                           <div className="flex justify-between items-start pb-2">
@@ -343,11 +477,11 @@ export default function Home() {
                     </Card>
                   </div>
 
-                  {/* 2. THE MODAL */}
                   <DialogContent className="sm:max-w-[800px] bg-background border-border max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                       <div className="flex justify-between items-start pr-6 gap-4">
-                        <DialogTitle className="text-2xl font-bold leading-tight bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">                          {project.title}
+                        <DialogTitle className="text-2xl font-bold leading-tight bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">                          
+                          {project.title}
                         </DialogTitle>
                         <span className="text-sm text-muted-foreground whitespace-nowrap mt-1">
                           {project.date}
@@ -367,7 +501,6 @@ export default function Home() {
                         ))}
                       </div>
 
-                      {/* DYNAMIC MEDIA SECTION */}
                       {project.images && project.images.length > 0 && (
                         <div
                           className={`grid gap-4 mb-6 ${
@@ -454,7 +587,8 @@ export default function Home() {
         <section id="experience" className="container mx-auto px-4 py-20 border-t">
             <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
               Experience
-            </h2>          <div className="space-y-6">
+            </h2>          
+            <div className="space-y-6">
             {experience.map((job, index) => (
               <Card key={index} className="w-full flex flex-col justify-between">
                 <div>
@@ -496,6 +630,109 @@ export default function Home() {
                     </Link>
                   </CardFooter>
                 )}
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* SKILLS CONVEYER BELT SECTION */}
+        <section id="skills" className="container mx-auto px-4 py-20 border-t overflow-hidden">
+          <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+            Tools & Technologies
+          </h2>
+          
+          <div className="relative w-full flex overflow-x-hidden group mask-image-fade py-4">
+            <div className="animate-marquee gap-16 px-8 items-center flex">
+              {[...skills, ...skills].map((skill, index) => (
+                <div key={index} className="flex flex-col items-center gap-4 min-w-[80px]">
+                  <div className="h-16 w-16 relative grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110">
+                    <Image
+                      src={skill.src}
+                      alt={skill.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-sm font-medium text-muted-foreground">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* EDUCATION & CERTIFICATIONS SECTION (Vertically Stacked) */}
+        <section id="education" className="container mx-auto px-4 py-20 border-t">
+          <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+            Education & Certifications
+          </h2>
+          
+          <div className="flex flex-col gap-6">
+            {/* Education Cards */}
+            {education.map((edu, index) => (
+              <Card key={index} className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
+                <CardHeader>
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                    <div>
+                      <CardTitle className="text-2xl flex items-center gap-2">
+                        <GraduationCap className="h-6 w-6 text-orange-400" />
+                        {edu.degree}
+                      </CardTitle>
+                      <CardDescription className="text-xl font-medium text-foreground mt-2">
+                        {edu.school}
+                      </CardDescription>
+                    </div>
+                    <div className="flex flex-col md:items-end text-left md:text-right">
+                      <Badge variant="outline" className="w-fit mb-2 text-sm py-1 px-3">
+                        {edu.date}
+                      </Badge>
+                      <span className="text-sm text-muted-foreground">{edu.location}</span>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-6 space-y-2">
+                    {edu.gpaLines.map((line, i) => (
+                      <p key={i} className="text-muted-foreground font-medium">{line}</p>
+                    ))}
+                  </div>
+                  
+                  {edu.courses && edu.courses.length > 0 && (
+                    <div className="space-y-3">
+                      <p className="text-base font-semibold text-foreground">Highlighted Coursework:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {edu.courses.map((course, courseIndex) => (
+                          <Badge key={courseIndex} variant="secondary" className="px-3 py-1 text-sm bg-muted/50 hover:bg-muted">
+                            {course}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+
+            {/* Certification Cards */}
+            {certifications.map((cert, index) => (
+              <Card key={`cert-${index}`} className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
+                <CardHeader>
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                    <div>
+                      <CardTitle className="text-2xl flex items-center gap-2">
+                        <Award className="h-6 w-6 text-orange-400" />
+                        {cert.title}
+                      </CardTitle>
+                      <CardDescription className="text-xl font-medium text-foreground mt-2">
+                        {cert.issuer}
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    {cert.description}
+                  </p>
+                </CardContent>
               </Card>
             ))}
           </div>
