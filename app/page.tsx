@@ -24,8 +24,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-// Imported GraduationCap and Award icons for the new section
 import { Mail, GraduationCap, Award } from "lucide-react";
+import { motion } from "framer-motion";
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -72,7 +72,10 @@ export default function Home() {
   const [title1, setTitle1] = useState("");
   const [title2, setTitle2] = useState("");
   const [phase, setPhase] = useState(0);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeSection, setActiveSection] = useState("");
 
+  // Typing Effect Hook
   useEffect(() => {
     const fullTitle1 = "Liam Tanner";
     const fullTitle2 = "Software Engineer";
@@ -116,6 +119,25 @@ export default function Home() {
       clearInterval(interval1);
       clearInterval(interval2);
     };
+  }, []);
+
+  // Intersection Observer for Active Nav Highlighting
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -70% 0px" } // Triggers when the section is near the upper-middle of the viewport
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   const skills = [
@@ -177,7 +199,6 @@ export default function Home() {
     },
   ];
 
-  // Updated Data based on your most recent screenshot additions
   const education = [
     {
       degree: "Bachelor of Software Engineering",
@@ -220,6 +241,7 @@ export default function Home() {
     {
       title: "Motion Estimation Video Compression Optimizations",
       date: "July - Aug 2026",
+      category: "Embedded Systems",
       description:
         "Optimized a 16x16 Sum-of-Absolute-Differences (SAD) kernel for motion estimation on an ARM architecture. Developed a custom, stateless SAD4 operation, and integrated it via a patched QEMU emulator and inline assembly. Achieved an 11.89x execution speedup using the custom opcode and a peak 34.93x speedup by implementing an ARM NEON SIMD vectorization pipeline.",
       tech: ["C", "ARM Assembly", "Hardware Optimization"],
@@ -229,6 +251,7 @@ export default function Home() {
     {
       title: "AI Incident Orchestrator",
       date: "May - Aug 2026",
+      category: "AI & Machine Learning",
       description:
         "Engineered a production-ready AI orchestration pipeline for diagnosing and providing recommended actions to mitigate cyber security threats. Leveraged LLMs and RAG context to automate recommendation generation in a distributed environment.",
       tech: ["Python", "PostgreSQL", "Groq API", "CI/CD"],
@@ -238,6 +261,7 @@ export default function Home() {
     {
       title: "Convolutional Engine",
       date: "Apr 2026",
+      category: "Web & Software",
       description:
         "Engineered a high-performance image processing library that uses shared memory tiling to minimize global memory bottlenecks and maximize GPU throughput for convolutional computations.",
       tech: ["CUDA", "C++"],
@@ -246,6 +270,7 @@ export default function Home() {
     {
       title: "EfficientAD Anomaly Detector",
       date: "Mar 2026",
+      category: "AI & Machine Learning",
       description:
         "Engineered a state-of-the-art anomaly detection pipeline in PyTorch, by writing the Patch Description Network class, training the teacher network and removing bottlenecks from the student/autoencoder training algorithm to allow for 70,000 training iterations in under 2 hours. Achieved an AUROC score of 0.88 on a diverse industrial dataset with less than 1 millisecond performance.",
       tech: ["PyTorch", "CNN Architecture"],
@@ -255,6 +280,7 @@ export default function Home() {
     {
       title: "Breast Cancer Diagnosis Model",
       date: "Feb 2026",
+      category: "AI & Machine Learning",
       description:
         "Engineered a regularized logistic regression model for breast cancer diagnosis, achieving a 98.59% accuracy on the WDBC dataset by implementing a regularized softmax cost function and gradient descent from scratch.",
       tech: ["MATLAB", "Machine Learning"],
@@ -263,6 +289,7 @@ export default function Home() {
     {
       title: "ML Exoplanet Identifier and Visualizer",
       date: "Oct 2025",
+      category: "AI & Machine Learning",
       description:
         "Trained a Random Forest model to classify whether or not an event is likely to be an exoplanet using NASA's Kepler data for the NASA Space Apps Hackathon. Built an interactive application to visualize the data, hosting the frontend on Vercel and the backend/ML on Render. Check out this live site below!",
       tech: ["Scikit-learn", "Python", "Vercel", "Render"],
@@ -273,8 +300,9 @@ export default function Home() {
     {
       title: "Ray Tracer",
       date: "Mar — Jun 2025",
+      category: "Web & Software",
       description:
-        "Developed a ray tracer capable of rendering 3D animations using core vector math and rendering logic without relying on graphics APIs by following a textbook.",
+        "Developed a ray tracer capable of rendering 3D animations using vector math and rendering logic without relying on graphics APIs by following a textbook.",
       tech: ["C++"],
       link: "https://github.com/liamtannerr/RayTracer",
       images: ["RayTracer.png"],
@@ -282,6 +310,7 @@ export default function Home() {
     {
       title: "Embedded Traffic Light Simulation",
       date: "Feb — March 2025",
+      category: "Embedded Systems",
       description:
         "Designed the hardware architecture for an STM32F4-based traffic simulation, using 22 LEDs, a potentiometer, and 3 daisy-chained shift registers. Synchronized the 19-bit LED array to simulate traffic flow through a stoplight controlled intersection. Calculated and wired precise series resistors to protect the power supply and components.",
       tech: ["RTOS", "Circuit Design", "Embedded C"],
@@ -291,6 +320,7 @@ export default function Home() {
     {
       title: "Virtual Triage System",
       date: "Sept — Nov 2024",
+      category: "Web & Software",
       description:
         "With emergency department wait times exceeding 8 hours in BC, we need a more efficient way to diagnose prospective emergency deparment patients in order to determine the severity of their afflictions. Our Virtual Triage System allows patients to submit their symptoms to a remote nurse who assigns patient priorities in order to create a virtual queue. Patients can then wait for an available physician from the comfort of their own homes. Furthermore, patients can monitor the current wait times of the emergency deparments in their area.",
       tech: ["ReactJS", "Python", "MongoDB", "FastAPI"],
@@ -301,6 +331,7 @@ export default function Home() {
     {
       title: "Autonomous IR Detecting Robot",
       date: "Jan — Apr 2022",
+      category: "Embedded Systems",
       description:
         "Built a custom IR light detection robot capable of detecting an IR beacon, travelling towards it and depositing a payload.",
       tech: ["C"],
@@ -309,9 +340,14 @@ export default function Home() {
     },
   ];
 
+  const projectCategories = ["All", "AI & Machine Learning", "Embedded Systems", "Web & Software"];
+  
+  const filteredProjects = projects.filter(
+    (project) => activeFilter === "All" || project.category === activeFilter
+  );
+
   return (
     <div className="min-h-screen bg-background font-sans antialiased overflow-x-hidden">
-      {/* CUSTOM CSS FOR MARQUEE ANIMATION */}
       <style dangerouslySetInnerHTML={{
         __html: `
         @keyframes marquee {
@@ -332,36 +368,41 @@ export default function Home() {
         }
       `}} />
 
-      {/* HEADER / NAVBAR */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="font-bold text-xl tracking-tight bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
             Liam Tanner
           </div>
           
           <div className="flex items-center gap-4">
-          <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
+         <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground mr-2">
               <Link 
                 href="#projects" 
-                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+                className={`transition-all hover:text-orange-400 ${activeSection === "projects" ? "text-orange-400 font-semibold" : ""}`}
               >
                 Projects
               </Link>
               <Link 
                 href="#experience" 
-                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+                className={`transition-all hover:text-orange-400 ${activeSection === "experience" ? "text-orange-400 font-semibold" : ""}`}
               >
                 Experience
               </Link>
               <Link 
+                href="#skills" 
+                className={`transition-all hover:text-orange-400 ${activeSection === "skills" ? "text-orange-400 font-semibold" : ""}`}
+              >
+                Tools
+              </Link>
+              <Link 
                 href="#education" 
-                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+                className={`transition-all hover:text-orange-400 ${activeSection === "education" ? "text-orange-400 font-semibold" : ""}`}
               >
                 Education
               </Link>
               <Link 
                 href="#about" 
-                className="transition-all hover:bg-gradient-to-r hover:from-amber-300 hover:via-orange-400 hover:to-orange-500 hover:bg-clip-text hover:text-transparent"
+                className={`transition-all hover:text-orange-400 ${activeSection === "about" ? "text-orange-400 font-semibold" : ""}`}
               >
                 About Me
               </Link>
@@ -373,8 +414,7 @@ export default function Home() {
       </header>
 
       <main className="w-full">
-        {/* HERO SECTION */}
-        <section className="relative w-full flex flex-col items-center justify-center pt-32 pb-32 text-center overflow-hidden border-b">
+        <section id="hero" className="relative w-full flex flex-col items-center justify-center pt-32 pb-32 text-center overflow-hidden border-b">
           <div className="absolute inset-0 z-0">
             <Image
               src="banner.JPEG"
@@ -423,9 +463,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PROJECTS SECTION */}
         <section id="projects" className="w-full relative overflow-hidden">
-          <div className="hidden lg:block absolute top-50 right-0 w-[23rem] z-0 opacity-90 pointer-events-none select-none">
+          
+          <div 
+            className={`hidden lg:block absolute right-0 w-[23rem] z-0 opacity-90 pointer-events-none select-none transition-all duration-500 ease-in-out ${
+              activeFilter === "All" ? "top-[15rem]" : "top-[2rem]"
+            }`}
+          >
             <Image
               src="pointing.png"
               alt="Pointing at projects"
@@ -437,14 +481,48 @@ export default function Home() {
           </div>
 
           <div className="container mx-auto px-4 lg:pr-[18rem] py-20 border-t relative z-10">
-            <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-90px" }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold tracking-tight mb-6 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit"
+            >
               Projects
-            </h2>
+            </motion.h2>
             
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-90px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex flex-wrap gap-3 mb-10"
+            >
+              {projectCategories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveFilter(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                    activeFilter === category
+                      ? "bg-orange-400 text-white border-orange-400 shadow-md font-semibold"
+                      : "bg-muted/30 text-muted-foreground border-border hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </motion.div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {projects.map((project, index) => (
+              {filteredProjects.map((project, index) => (
                 <Dialog key={index}>
-                  <div className="relative h-full group outline-none">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-45px" }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="relative h-full group outline-none"
+                  >
                     <Card className="relative flex flex-col justify-between h-full overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:border-orange-400/30 group-hover:shadow-[-25px_0_50px_rgba(252,211,77,0.3),_25px_0_50px_rgba(249,115,22,0.45)] bg-card/50 backdrop-blur-sm will-change-transform">
                       <DialogTrigger className="absolute inset-0 w-full h-full z-20 cursor-pointer outline-none border-none bg-transparent">
                         <span className="sr-only">View {project.title} details</span>
@@ -474,7 +552,7 @@ export default function Home() {
                         </CardContent>
                       </div>
                     </Card>
-                  </div>
+                  </motion.div>
 
                   <DialogContent className="sm:max-w-[800px] bg-background border-border max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
@@ -582,65 +660,89 @@ export default function Home() {
           </div>
         </section>
 
-        {/* EXPERIENCE SECTION */}
         <section id="experience" className="container mx-auto px-4 py-20 border-t">
-            <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
-              Experience
-            </h2>          
-            <div className="space-y-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit"
+          >
+            Experience
+          </motion.h2>          
+          <div className="space-y-6">
             {experience.map((job, index) => (
-              <Card key={index} className="w-full flex flex-col justify-between">
-                <div>
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                      <div>
-                        <CardTitle className="text-xl">{job.role}</CardTitle>
-                        <CardDescription className="text-lg font-medium text-foreground mt-1">
-                          {job.company}
-                        </CardDescription>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-45px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="w-full flex flex-col justify-between">
+                  <div>
+                    <CardHeader>
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                          <CardTitle className="text-xl">{job.role}</CardTitle>
+                          <CardDescription className="text-lg font-medium text-foreground mt-1">
+                            {job.company}
+                          </CardDescription>
+                        </div>
+                        <div className="flex flex-col md:items-end text-left md:text-right">
+                          <Badge variant="outline" className="w-fit mb-1">
+                            {job.date}
+                          </Badge>
+                          <span className="text-sm text-muted-foreground">{job.location}</span>
+                        </div>
                       </div>
-                      <div className="flex flex-col md:items-end text-left md:text-right">
-                        <Badge variant="outline" className="w-fit mb-1">
-                          {job.date}
-                        </Badge>
-                        <span className="text-sm text-muted-foreground">{job.location}</span>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-                      {job.bullets.map((bullet, bulletIndex) => (
-                        <li key={bulletIndex} className="leading-relaxed">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </div>
-                {job.link && (
-                  <CardFooter>
-                    <Link
-                      href={job.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={buttonVariants({ variant: "default", size: "sm" })}
-                    >
-                      View Website
-                    </Link>
-                  </CardFooter>
-                )}
-              </Card>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                        {job.bullets.map((bullet, bulletIndex) => (
+                          <li key={bulletIndex} className="leading-relaxed">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </div>
+                  {job.link && (
+                    <CardFooter>
+                      <Link
+                        href={job.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={buttonVariants({ variant: "default", size: "sm" })}
+                      >
+                        View Website
+                      </Link>
+                    </CardFooter>
+                  )}
+                </Card>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* SKILLS CONVEYER BELT SECTION */}
         <section id="skills" className="container mx-auto px-4 py-20 border-t overflow-hidden">
-          <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit"
+          >
             Tools & Technologies
-          </h2>
+          </motion.h2>
           
-          <div className="relative w-full flex overflow-x-hidden group mask-image-fade py-4">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full flex overflow-x-hidden group mask-image-fade py-4"
+          >
             <div className="animate-marquee gap-16 px-8 items-center flex">
               {[...skills, ...skills].map((skill, index) => (
                 <div key={index} className="flex flex-col items-center gap-4 min-w-[80px]">
@@ -656,123 +758,169 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* EDUCATION & CERTIFICATIONS SECTION (Vertically Stacked) */}
         <section id="education" className="container mx-auto px-4 py-20 border-t">
-          <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit"
+          >
             Education & Certifications
-          </h2>
+          </motion.h2>
           
           <div className="flex flex-col gap-6">
-            {/* Education Cards */}
             {education.map((edu, index) => (
-              <Card key={index} className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                    <div>
-                      <CardTitle className="text-2xl flex items-center gap-2">
-                        <GraduationCap className="h-6 w-6 text-orange-400" />
-                        {edu.degree}
-                      </CardTitle>
-                      <CardDescription className="text-xl font-medium text-foreground mt-2">
-                        {edu.school}
-                      </CardDescription>
-                    </div>
-                    <div className="flex flex-col md:items-end text-left md:text-right">
-                      <Badge variant="outline" className="w-fit mb-2 text-sm py-1 px-3">
-                        {edu.date}
-                      </Badge>
-                      <span className="text-sm text-muted-foreground">{edu.location}</span>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-6 space-y-2">
-                    {edu.gpaLines.map((line, i) => (
-                      <p key={i} className="text-muted-foreground font-medium">{line}</p>
-                    ))}
-                  </div>
-                  
-                  {edu.courses && edu.courses.length > 0 && (
-                    <div className="space-y-3">
-                      <p className="text-base font-semibold text-foreground">Highlighted Coursework:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {edu.courses.map((course, courseIndex) => (
-                          <Badge key={courseIndex} variant="secondary" className="px-3 py-1 text-sm bg-muted/50 hover:bg-muted">
-                            {course}
-                          </Badge>
-                        ))}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-45px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                      <div>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <GraduationCap className="h-6 w-6 text-orange-400" />
+                          {edu.degree}
+                        </CardTitle>
+                        <CardDescription className="text-xl font-medium text-foreground mt-2">
+                          {edu.school}
+                        </CardDescription>
+                      </div>
+                      <div className="flex flex-col md:items-end text-left md:text-right">
+                        <Badge variant="outline" className="w-fit mb-2 text-sm py-1 px-3">
+                          {edu.date}
+                        </Badge>
+                        <span className="text-sm text-muted-foreground">{edu.location}</span>
                       </div>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-
-            {/* Certification Cards */}
-            {certifications.map((cert, index) => (
-              <Card key={`cert-${index}`} className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                    <div>
-                      <CardTitle className="text-2xl flex items-center gap-2">
-                        <Award className="h-6 w-6 text-orange-400" />
-                        {cert.title}
-                      </CardTitle>
-                      <CardDescription className="text-xl font-medium text-foreground mt-2">
-                        {cert.issuer}
-                      </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-6 space-y-2">
+                      {edu.gpaLines.map((line, i) => (
+                        <p key={i} className="text-muted-foreground font-medium">{line}</p>
+                      ))}
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed text-base">
-                    {cert.description}
-                  </p>
-                </CardContent>
-              </Card>
+                    
+                    {edu.courses && edu.courses.length > 0 && (
+                      <div className="space-y-3">
+                        <p className="text-base font-semibold text-foreground">Highlighted Coursework:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {edu.courses.map((course, courseIndex) => (
+                            <Badge key={courseIndex} variant="secondary" className="px-3 py-1 text-sm bg-muted/50 hover:bg-muted">
+                              {course}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={`cert-${index}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-45px" }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <Card className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                      <div>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <Award className="h-6 w-6 text-orange-400" />
+                          {cert.title}
+                        </CardTitle>
+                        <CardDescription className="text-xl font-medium text-foreground mt-2">
+                          {cert.issuer}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground leading-relaxed text-base">
+                      {cert.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ABOUT SECTION */}
         <section id="about" className="container mx-auto px-4 py-20 border-t">
-            <h2 className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit">
-              About Me
-            </h2>            
-            <div>
-              <p className="text-muted-foreground leading-relaxed">
-                Outside of tech, I like to play sports and explore nature. I grew up playing
-                hockey and baseball, and love spending time in the mountains, racing enduro mountain bikes and
-                skiing. This connection to the outdoors has directly shaped my professional life.
-                During an 8-month co-op with Natural Resources Canada on the Induced Seismicity
-                Project, I modeled real-world sites to ensure fracking and wastewater disposal
-                wouldn't trigger harmful seismic activity in remote communities. Later, as a
-                Software Developer at the Pacific Forestry Centre, I collaborated with like-minded
-                engineers and scientists who care deeply about protecting BC’s forests. In my final two years
-                at the University of Victoria, I've been building skills in machine learning and computer vision
-                such as mathematical optimization, data mining techniques and the design and training of convolutional
-                neural networks; exploring these skills through projects, class work and contributions as a member
-                of the Autonomous Underwater Vehicles Interdisciplinary Club, where we build autonomous submarines. 
-                Through the club, I represented my University at RoboSub 2026
-                in Irvine, California. On top of that, I always have fun playing around with full stack and web dev
-                projects like the website you are currently on!
-              </p>
-          </div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold tracking-tight mb-8 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit"
+          >
+            About Me
+          </motion.h2>            
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-45px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-muted-foreground leading-relaxed">
+              Outside of tech, I like to play sports and explore nature. I grew up playing
+              hockey and baseball, and love spending time in the mountains, racing enduro mountain bikes and
+              skiing. This connection to the outdoors has directly shaped my professional life.
+              During an 8-month co-op with Natural Resources Canada on the Induced Seismicity
+              Project, I modeled real-world sites to ensure fracking and wastewater disposal
+              wouldn't trigger harmful seismic activity in remote communities. Later, as a
+              Software Developer at the Pacific Forestry Centre, I collaborated with like-minded
+              engineers and scientists who care deeply about protecting BC’s forests. In my final two years
+              at the University of Victoria, I've been building skills in machine learning and computer vision
+              such as mathematical optimization, data mining techniques and the design and training of convolutional
+              neural networks; exploring these skills through projects, class work and contributions as a member
+              of the Autonomous Underwater Vehicles Interdisciplinary Club, where we build autonomous submarines. 
+              Through the club, I represented my University at RoboSub 2026
+              in Irvine, California. On top of that, I always have fun playing around with full stack and web dev
+              projects like the website you are currently on!
+            </p>
+          </motion.div>
         </section>
 
-        {/* CONTACT SECTION */}
         <section id="contact" className="container mx-auto px-4 py-24 border-t text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold tracking-tight mb-4 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit mx-auto"
+          >
             Let's Connect
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-45px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
+          >
             I am currently looking for new opportunities and collaborations. Whether you have a
             question about my work or just want to say hi, I will try my best to get back to you!
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-45px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-6"
+          >
             <Link
               href="mailto:liam.tanner@brentwood.ca"
               className={`${buttonVariants({
@@ -807,10 +955,9 @@ export default function Home() {
               <GithubIcon className="h-6 w-6" />
               <span className="sr-only">GitHub</span>
             </Link>
-          </div>
+          </motion.div>
         </section>
 
-        {/* HIDDEN PRELOADER FOR MODAL MEDIA */}
         <div className="hidden">
           {projects
             .flatMap((project) => project.images || [])
@@ -826,7 +973,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* FOOTER */}
       <footer className="border-t py-6 text-center text-sm text-muted-foreground">
         <p>© {new Date().getFullYear()} Liam Tanner. All rights reserved.</p>
       </footer>
