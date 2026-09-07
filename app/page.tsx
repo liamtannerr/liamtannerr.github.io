@@ -251,7 +251,7 @@ export default function Home() {
     {
       title: "AI Incident Orchestrator",
       date: "May - Aug 2026",
-      category: "AI & Machine Learning",
+      category: "ML & Computer Vision",
       description:
         "Engineered a production-ready AI orchestration pipeline for diagnosing and providing recommended actions to mitigate cyber security threats. Leveraged LLMs and RAG context to automate recommendation generation in a distributed environment.",
       tech: ["Python", "PostgreSQL", "Groq API", "CI/CD"],
@@ -270,7 +270,7 @@ export default function Home() {
     {
       title: "EfficientAD Anomaly Detector",
       date: "Mar 2026",
-      category: "AI & Machine Learning",
+      category: "ML & Computer Vision",
       description:
         "Engineered a state-of-the-art anomaly detection pipeline in PyTorch, by writing the Patch Description Network class, training the teacher network and removing bottlenecks from the student/autoencoder training algorithm to allow for 70,000 training iterations in under 2 hours. Achieved an AUROC score of 0.88 on a diverse industrial dataset with less than 1 millisecond performance.",
       tech: ["PyTorch", "CNN Architecture"],
@@ -280,7 +280,7 @@ export default function Home() {
     {
       title: "Breast Cancer Diagnosis Model",
       date: "Feb 2026",
-      category: "AI & Machine Learning",
+      category: "ML & Computer Vision",
       description:
         "Engineered a regularized logistic regression model for breast cancer diagnosis, achieving a 98.59% accuracy on the WDBC dataset by implementing a regularized softmax cost function and gradient descent from scratch.",
       tech: ["MATLAB", "Machine Learning"],
@@ -289,7 +289,7 @@ export default function Home() {
     {
       title: "ML Exoplanet Identifier and Visualizer",
       date: "Oct 2025",
-      category: "AI & Machine Learning",
+      category: "ML & Computer Vision",
       description:
         "Trained a Random Forest model to classify whether or not an event is likely to be an exoplanet using NASA's Kepler data for the NASA Space Apps Hackathon. Built an interactive application to visualize the data, hosting the frontend on Vercel and the backend/ML on Render. Check out this live site below!",
       tech: ["Scikit-learn", "Python", "Vercel", "Render"],
@@ -340,7 +340,7 @@ export default function Home() {
     },
   ];
 
-  const projectCategories = ["All", "AI & Machine Learning", "Embedded Systems", "Web & Software"];
+  const projectCategories = ["All", "ML & Computer Vision", "Embedded Systems", "Web & Software"];
   
   const filteredProjects = projects.filter(
     (project) => activeFilter === "All" || project.category === activeFilter
@@ -448,7 +448,7 @@ export default function Home() {
             </h1>
 
             <p className="text-xl text-foreground font-medium max-w-2xl mb-8">
-              Welcome to my Portfolio Website
+              Welcome to my Portfolio
             </p>
             <div className="flex gap-4">
               <Link
