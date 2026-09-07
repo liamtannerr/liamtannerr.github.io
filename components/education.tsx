@@ -1,13 +1,16 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
+  CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Award } from "lucide-react";
@@ -87,25 +90,39 @@ export default function Education() {
             viewport={{ once: true, margin: "0px" }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <Card className="w-full relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
-              <CardHeader>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                  <div>
-                    <CardTitle className="text-2xl flex items-center gap-2">
-                      <Award className="h-6 w-6 text-orange-400" />
-                      {cert.title}
-                    </CardTitle>
-                    <CardDescription className="text-xl font-medium text-foreground mt-2">
-                      {cert.issuer}
-                    </CardDescription>
+            <Card className="w-full flex flex-col justify-between relative overflow-hidden transition-all duration-300 hover:border-orange-400/30">
+              <div>
+                <CardHeader>
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                    <div>
+                      <CardTitle className="text-2xl flex items-center gap-2">
+                        <Award className="h-6 w-6 text-orange-400" />
+                        {cert.title}
+                      </CardTitle>
+                      <CardDescription className="text-xl font-medium text-foreground mt-2">
+                        {cert.issuer}
+                      </CardDescription>
+                    </div>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed text-base">
-                  {cert.description}
-                </p>
-              </CardContent>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    {cert.description}
+                  </p>
+                </CardContent>
+              </div>
+              {cert.link && (
+                <CardFooter>
+                  <Link
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonVariants({ variant: "default", size: "sm" })}
+                  >
+                    View Certificate
+                  </Link>
+                </CardFooter>
+              )}
             </Card>
           </motion.div>
         ))}

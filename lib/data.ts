@@ -91,7 +91,8 @@ export const skills = [
     {
       title: "AWS Cloud Practitioner Essentials",
       issuer: "Amazon Web Services (AWS)",
-      description: "Foundational certification covering AWS Cloud concepts, security, architecture, core services, and distributed systems."
+      description: "Foundational certification covering AWS Cloud concepts, security, architecture, core services, and distributed systems.",
+      link: "/AWS_CPE_Cert.pdf"
     }
   ];
 
