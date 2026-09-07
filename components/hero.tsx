@@ -7,79 +7,42 @@ import { buttonVariants } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export default function Hero() {
-  const [title1, setTitle1] = useState("");
-  const [title2, setTitle2] = useState("");
   const [title3, setTitle3] = useState("");
   
-  // -1: Waiting for image, 0: title1, 1: title2, 2: title3, 3: done
-  const [phase, setPhase] = useState(-1); 
-  const [startSequence, setStartSequence] = useState(false);
+  // State switches to chain the animations together
+  const [showText, setShowText] = useState(false);
+  const [startTyping, setStartTyping] = useState(false);
+  const [phase, setPhase] = useState(-1); // 0: Typing title 3, 1: Done
 
   useEffect(() => {
-    if (!startSequence) return;
+    if (!startTyping) return;
 
-    const fullTitle1 = "Liam Tanner";
-    const fullTitle2 = "Software Engineer";
     const fullTitle3 = "Welcome to my Portfolio";
-
-    let current1 = "";
-    let current2 = "";
     let current3 = "";
-    let i = 0;
-    let j = 0;
     let k = 0;
-    let interval1: ReturnType<typeof setInterval>;
-    let interval2: ReturnType<typeof setInterval>;
     let interval3: ReturnType<typeof setInterval>;
 
-    const startTyping3 = () => {
-      setPhase(2);
+    const startTypingSequence = () => {
+      setPhase(0);
       interval3 = setInterval(() => {
         current3 = fullTitle3.substring(0, k + 1);
         setTitle3(current3);
         k++;
         if (k >= fullTitle3.length) {
           clearInterval(interval3);
-          setPhase(3); 
+          setPhase(1); // Ends the typing sequence and triggers the button
         }
       }, 50); 
     };
 
-    const startTyping2 = () => {
-      setPhase(1);
-      interval2 = setInterval(() => {
-        current2 = fullTitle2.substring(0, j + 1);
-        setTitle2(current2);
-        j++;
-        if (j >= fullTitle2.length) {
-          clearInterval(interval2);
-          setTimeout(startTyping3, 400); 
-        }
-      }, 70);
-    };
-
-    const startTyping1 = () => {
-      interval1 = setInterval(() => {
-        current1 = fullTitle1.substring(0, i + 1);
-        setTitle1(current1);
-        i++;
-        if (i >= fullTitle1.length) {
-          clearInterval(interval1);
-          setTimeout(startTyping2, 400); 
-        }
-      }, 100);
-    };
-
-    // A tiny delay after the image lands before typing starts
-    const initialDelay = setTimeout(startTyping1, 200);
+    // A tiny delay after the text lands before typing begins
+    const initialDelay = setTimeout(startTypingSequence, 200);
 
     return () => {
       clearTimeout(initialDelay);
-      clearInterval(interval1);
-      clearInterval(interval2);
       clearInterval(interval3);
     };
-  }, [startSequence]);
+  }, [startTyping]);
 
   return (
     <section id="hero" className="relative w-full flex flex-col items-center justify-center pt-32 pb-32 text-center overflow-hidden border-b">
@@ -96,13 +59,13 @@ export default function Hero() {
 
       <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center">
         
+        {/* Step 1: Profile Picture sliding in from the left */}
         <motion.div
           initial={{ opacity: 0, x: "-100vw" }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           onAnimationComplete={() => {
-            setPhase(0);
-            setStartSequence(true);
+            setShowText(true); // Triggers the text slide once the picture is done
           }}
         >
           <div className="relative mb-6 h-[250px] w-[250px] overflow-hidden rounded-full border-2 border-border shadow-lg cursor-pointer transition-transform duration-600 ease-in-out hover:[transform:rotateY(180deg)_scale(1.1)]">
@@ -116,26 +79,35 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
-          {title1 || (phase < 0 ? "\u00A0" : "")}
-          {phase === 0 && <span className="animate-pulse text-muted-foreground font-light">|</span>}
-        </h1>
-        
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
-          {title2 || (phase < 1 ? "\u00A0" : "")}
-          {phase === 1 && <span className="animate-pulse text-muted-foreground font-light">|</span>}
-        </h1>
+        {/* Step 2: Bold Text sliding in from the right */}
+        <motion.div
+          initial={{ opacity: 0, x: "100vw" }}
+          animate={showText ? { opacity: 1, x: 0 } : { opacity: 0, x: "100vw" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          onAnimationComplete={() => {
+            if (showText) setStartTyping(true); // Triggers the typing effect once the text is done
+          }}
+        >
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
+            Liam Tanner
+          </h1>
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl mb-4">
+            Software Engineer
+          </h1>
+        </motion.div>
 
-        <p className="text-xl text-foreground font-medium max-w-2xl mb-8">
-          {title3 || (phase < 2 ? "\u00A0" : "")}
-          {phase === 2 && <span className="animate-pulse text-muted-foreground font-light">|</span>}
+        {/* Step 3: Typing Subtitle */}
+        <p className="text-xl text-foreground font-medium max-w-2xl mb-8 h-7">
+          {title3 || (phase < 0 ? "\u00A0" : "")}
+          {phase === 0 && <span className="animate-pulse text-muted-foreground font-light">|</span>}
         </p>
         
+        {/* Step 4: Resume Button fading in */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: phase === 3 ? 1 : 0, y: phase === 3 ? 0 : 20 }}
+          animate={{ opacity: phase === 1 ? 1 : 0, y: phase === 1 ? 0 : 20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`flex gap-4 ${phase === 3 ? "pointer-events-auto" : "pointer-events-none"}`}
+          className={`flex gap-4 ${phase === 1 ? "pointer-events-auto" : "pointer-events-none"}`}
         >
           <Link
             href="/Resume.pdf"
