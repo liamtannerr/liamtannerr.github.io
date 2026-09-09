@@ -89,9 +89,9 @@ export const skills = [
 
   export  const certifications = [
     {
-      title: "AWS Cloud Practitioner Essentials",
-      issuer: "Amazon Web Services (AWS)",
-      description: "Foundational certification covering AWS Cloud concepts, security, architecture, core services, and distributed systems.",
+      title: "AWS Cloud Practitioner Certified",
+      issuer: "Amazon Web Services",
+      description: "Certification covering AWS Cloud concepts, services and design",
       link: "/AWS_CPE_Cert.pdf"
     }
   ];
