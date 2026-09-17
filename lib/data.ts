@@ -164,6 +164,7 @@ export const skills = [
         "Developed a ray tracer capable of rendering 3D animations using vector math and rendering logic without relying on graphics APIs by following a textbook.",
       tech: ["C++"],
       link: "https://github.com/liamtannerr/RayTracer",
+      liveLink: "https://raystudio.onrender.com/",
       images: ["RayTracer.png"],
     },
     {
