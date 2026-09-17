@@ -65,7 +65,7 @@ export default function Projects() {
 
         <div className="mb-8 border-b border-border pb-8">
           <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange-500 dark:text-orange-400">
-            Live sites
+            Currently Live Projects
           </h3>
           <div className="flex flex-wrap gap-3">
             {projects.filter((project) => project.liveLink).map((project) => (
@@ -81,9 +81,6 @@ export default function Projects() {
               </Link>
             ))}
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Both backends are hosted on Render’s free tier. Thanks for your patience while they load.
-          </p>
         </div>
         
         <motion.div 
