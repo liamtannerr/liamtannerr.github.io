@@ -118,6 +118,7 @@ export default function Hero() {
             See Resume
           </Link>
         </motion.div>
+
       </div>
     </section>
   );

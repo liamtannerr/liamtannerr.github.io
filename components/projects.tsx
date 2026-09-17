@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -60,6 +61,30 @@ export default function Projects() {
         >
           Projects
         </motion.h2>
+
+
+        <div className="mb-8 border-b border-border pb-8">
+          <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange-500 dark:text-orange-400">
+            Live sites
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {projects.filter((project) => project.liveLink).map((project) => (
+              <Link
+                key={project.title}
+                href={project.liveLink!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full border border-orange-400/30 bg-orange-400/5 px-4 py-2.5 text-sm font-medium transition-colors hover:border-orange-400 hover:bg-orange-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {project.title}
+                <ExternalLink className="size-4 shrink-0 text-orange-500 dark:text-orange-400" aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Both backends are hosted on Render’s free tier. Thanks for your patience while they load.
+          </p>
+        </div>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -85,7 +110,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredProjects.map((project, index) => (
-            <Dialog key={index}>
+            <Dialog key={project.title}>
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -121,6 +146,7 @@ export default function Projects() {
                       </div>
                     </CardContent>
                   </div>
+
                 </Card>
               </motion.div>
 
@@ -187,8 +213,13 @@ export default function Projects() {
                     </div>
                   )}
 
+                  {project.liveLink && (
+                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                      Backend hosted on Render’s free tier. Please be patient while the site loads on your first visit.
+                    </p>
+                  )}
                   {(project.link || project.liveLink || project.demoLink) && (
-                    <div className="flex justify-end gap-3 pt-4 border-t mt-auto">
+                    <div className="flex flex-wrap justify-end gap-3 pt-4 border-t mt-auto">
                       {project.link && (
                         <Link
                           href={project.link}
