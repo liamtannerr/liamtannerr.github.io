@@ -32,7 +32,9 @@ export default function About() {
           Project, I modeled real-world sites to ensure fracking and wastewater disposal
           wouldn&apos;t trigger harmful seismic activity in remote communities. Later, as a
           Software Developer at the Pacific Forestry Centre, I collaborated with like-minded
-          engineers and scientists who care deeply about protecting BC’s forests.
+          engineers and scientists who care deeply about protecting BC’s forests. Here I built
+          ETL pipelines and led an effort to take over all responsibilities of a legacy site 
+          from another organization without access to the original source code.
         </p>
         <p>
           In my final two years
