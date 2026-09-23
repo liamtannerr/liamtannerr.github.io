@@ -222,7 +222,7 @@ export default function Projects() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={buttonVariants({ variant: "outline" })}
+                          className={buttonVariants({ variant: "orange" })}
                         >
                           View Source
                         </Link>
@@ -233,7 +233,7 @@ export default function Projects() {
                           href={project.liveLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={buttonVariants({ variant: "default" })}
+                          className={buttonVariants({ variant: "orange" })}
                         >
                           View Live Site
                         </Link>

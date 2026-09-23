@@ -70,7 +70,7 @@ export default function Experience() {
                     href={job.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={buttonVariants({ variant: "default", size: "sm" })}
+                    className={buttonVariants({ variant: "orange", size: "sm" })}
                   >
                     View Website
                   </Link>

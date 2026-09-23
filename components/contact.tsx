@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -57,7 +58,7 @@ export default function Contact() {
         transition={{ duration: 0.3 }}
         className="text-3xl font-bold tracking-tight mb-4 bg-gradient-to-r from-amber-300 via-orange-400 to-orange-500 bg-clip-text text-transparent w-fit mx-auto"
       >
-        Let's Connect
+        Let&apos;s Connect
       </motion.h2>
       <motion.p 
         initial={{ opacity: 0, y: 10 }}
@@ -78,10 +79,10 @@ export default function Contact() {
       >
         <Link
           href="mailto:liam.tanner@brentwood.ca"
-          className={`${buttonVariants({
-            variant: "outline",
+          className={cn(buttonVariants({
+            variant: "orange-outline",
             size: "icon",
-          })} h-14 w-14 rounded-full hover:border-emerald-500/50 hover:text-emerald-500 transition-colors`}
+          }), "h-14 w-14 rounded-full")}
         >
           <Mail className="h-6 w-6" />
           <span className="sr-only">Email Me</span>
@@ -90,10 +91,10 @@ export default function Contact() {
           href="https://www.linkedin.com/in/liam-tanner-792b43275"
           target="_blank"
           rel="noopener noreferrer"
-          className={`${buttonVariants({
-            variant: "outline",
+          className={cn(buttonVariants({
+            variant: "orange-outline",
             size: "icon",
-          })} h-14 w-14 rounded-full hover:border-emerald-500/50 hover:text-emerald-500 transition-colors`}
+          }), "h-14 w-14 rounded-full")}
         >
           <LinkedinIcon className="h-6 w-6" />
           <span className="sr-only">LinkedIn</span>
@@ -102,10 +103,10 @@ export default function Contact() {
           href="https://github.com/liamtannerr"
           target="_blank"
           rel="noopener noreferrer"
-          className={`${buttonVariants({
-            variant: "outline",
+          className={cn(buttonVariants({
+            variant: "orange-outline",
             size: "icon",
-          })} h-14 w-14 rounded-full hover:border-emerald-500/50 hover:text-emerald-500 transition-colors`}
+          }), "h-14 w-14 rounded-full")}
         >
           <GithubIcon className="h-6 w-6" />
           <span className="sr-only">GitHub</span>

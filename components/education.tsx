@@ -117,7 +117,7 @@ export default function Education() {
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={buttonVariants({ variant: "default", size: "sm" })}
+                    className={buttonVariants({ variant: "orange", size: "sm" })}
                   >
                     View Certificate
                   </Link>

@@ -28,13 +28,16 @@ export default function Skills() {
         <div className="animate-marquee gap-16 px-8 items-center flex">
           {[...skills, ...skills].map((skill, index) => (
             <div key={index} className="flex flex-col items-center gap-4 min-w-[80px]">
-              <div className="h-16 w-16 relative grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110">
-                <Image
-                  src={skill.src}
-                  alt={skill.name}
-                  fill
-                  className="object-contain"
-                />
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-border/60 bg-muted/30 grayscale hover:grayscale-0 transition-all duration-300 hover:border-orange-400/40 hover:bg-muted/50 hover:scale-105">
+                <div className="relative h-12 w-12">
+                  <Image
+                    src={skill.src}
+                    alt={skill.name}
+                    fill
+                    sizes="48px"
+                    className={`object-contain ${skill.className ?? ""}`}
+                  />
+                </div>
               </div>
               <span className="text-sm font-medium text-muted-foreground">{skill.name}</span>
             </div>
