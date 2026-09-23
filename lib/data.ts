@@ -185,7 +185,7 @@ export const skills = [
         "With emergency department wait times exceeding 8 hours in BC, we need a more efficient way to diagnose prospective emergency deparment patients in order to determine the severity of their afflictions. Our Virtual Triage System allows patients to submit their symptoms to a remote nurse who assigns patient priorities in order to create a virtual queue. Patients can then wait for an available physician from the comfort of their own homes. Furthermore, patients can monitor the current wait times of the emergency deparments in their area.",
       tech: ["ReactJS", "Python", "MongoDB", "FastAPI"],
       link: "https://github.com/liamtannerr/Virtual-Triage-System",
-      demoLink: "https://www.youtube.com/watch?v=FPSUo2NT2v0",
+      liveLink: "https://mr-ed.vercel.app/",
       images: ["MrED-Pic.png"],
     },
     {
