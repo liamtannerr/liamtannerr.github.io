@@ -46,7 +46,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative w-full flex flex-col items-center justify-center pt-32 pb-32 text-center text-white overflow-hidden border-b">
-      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0">
         <Image
           src="/banner.JPEG"
           alt="Nature Background"
@@ -57,6 +57,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/10 to-black/15 backdrop-blur-[1px]"></div>
       </div>
 
+
       <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center">
         
         {/* Step 1: Profile picture and title slide in together */}
@@ -65,6 +66,7 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
+          <a href="#contact" aria-label="Contact me" className="block">
           <div className="relative mb-6 h-[250px] w-[250px] overflow-hidden rounded-full border-2 border-white/30 shadow-lg transition-transform duration-300 ease-out hover:scale-[1.03] motion-reduce:transform-none">
             <Image
               src="/face.jpg"
@@ -74,6 +76,7 @@ export default function Hero() {
               priority
             />
           </div>
+          </a>
         </motion.div>
 
         {/* Title sliding in from the right */}

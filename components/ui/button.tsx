@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/80",
         orange:
-          "bg-orange-400 text-neutral-950 hover:bg-orange-300 shadow-sm focus-visible:border-orange-300 focus-visible:ring-orange-300/50",
+          "bg-orange-400 text-white hover:bg-orange-300 shadow-sm focus-visible:border-orange-300 focus-visible:ring-orange-300/50",
         "orange-outline":
           "border-orange-400/70 bg-orange-400/10 text-orange-600 hover:border-orange-400 hover:bg-orange-400/20 hover:text-orange-600 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)] dark:text-orange-400 dark:hover:text-orange-300 focus-visible:border-orange-400 focus-visible:ring-orange-400/50",
         outline:
