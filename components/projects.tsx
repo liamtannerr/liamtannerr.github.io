@@ -215,7 +215,7 @@ export default function Projects() {
                       Backend hosted on Render’s free tier. Please be patient while the site loads on your first visit.
                     </p>
                   )}
-                  {(project.link || project.liveLink || project.demoLink) && (
+                  {(project.link || project.liveLink) && (
                     <div className="flex flex-wrap justify-end gap-3 pt-4 border-t mt-auto">
                       {project.link && (
                         <Link
@@ -236,16 +236,6 @@ export default function Projects() {
                           className={buttonVariants({ variant: "default" })}
                         >
                           View Live Site
-                        </Link>
-                      )}
-                      {project.demoLink && (
-                        <Link
-                          href={project.demoLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={buttonVariants({ variant: "default" })}
-                        >
-                          View Demo
                         </Link>
                       )}
                     </div>
